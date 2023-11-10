@@ -1,0 +1,117 @@
+html,
+body {
+    margin: 0;
+    font-family: sans-serif;
+    font-size: 10px;
+}
+
+header {
+    position: fixed;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: white;
+    border-top: 3px solid steelblue;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+header input {
+    display: block;
+    flex: 1;
+    padding: 0.5rem 1rem;
+    border: 2px solid steelblue;
+    border-radius: 0.5rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: steelblue;
+    padding-bottom: 2rem;
+}
+
+.container {
+    font-size: 1.6rem;
+}
+
+.content__container {
+    max-width: 800px;
+    margin: 5rem auto 15rem;
+}
+
+.page-tabs {
+    display: flex;
+    padding-bottom: 2rem;
+}
+
+.page-tabs button {
+    flex: 1;
+    padding: 1rem;
+    font-weight: bold;
+    color: steelblue;
+    background: none;
+    border: 2px solid steelblue;
+}
+
+.page-tabs button.active {
+    flex: 1;
+    padding: 1rem;
+    font-weight: bold;
+    background: steelblue;
+    color: white;
+    border: 2px solid steelblue;
+}
+
+table,
+td {
+  border: 1px solid #333;
+  border-collapse: collapse;
+}
+
+td,
+th {
+    padding: 0.25rem 1rem;
+    text-align: left;
+}
+
+thead,
+tfoot {
+  background-color: #333;
+  color: #fff;
+}
+
+.entry__group {
+    padding: 1rem;
+    background: steelblue;
+    color: white;
+}
+
+.entry__container {
+    padding: 2rem 1rem;
+    border-left: 1px solid steelblue;
+    border-right: 1px solid steelblue;
+    border-bottom: 1px solid steelblue;
+}
+
+.entry-image__container {
+    height: 4rem;
+    padding: 2rem 0;
+}
+
+.entry-image__container svg {
+    height: 100%;
+}
+
+.entry-image__container text {
+    font: bold 30px sans-serif;
+}
+
+.entry__command {
+    background: #EEE;
+    font-family: monospace;
+    display: inline-block;
+    padding: 0.25rem;
+}
