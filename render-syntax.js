@@ -41,8 +41,6 @@ function filterSyntax() {
 }
 
 function renderSyntax() {
-  const mount = document.getElementById("list-mount");
-
   const filtered = filterSyntax();
   if (!filtered) {
     mount.innerHTML = renderNoResults();

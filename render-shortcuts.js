@@ -26,8 +26,6 @@ function filterShortcuts() {
 }
 
 function renderShortcuts() {
-  const mount = document.getElementById("list-mount");
-
   const filtered = filterShortcuts();
   if (!filtered) {
     mount.innerHTML = renderNoResults();

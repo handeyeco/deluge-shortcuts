@@ -1,3 +1,5 @@
+const mount = document.getElementById("list-mount");
+
 let search = "";
 const searchInput = document.getElementById("search");
 searchInput.addEventListener("input", (event) => {
@@ -37,6 +39,8 @@ syntaxButton.addEventListener("click", (event) => {
 });
 
 function render() {
+  window.scrollTo(0,0);
+  
   if (currentPage === SYNTAX_PAGE) {
     renderSyntax();
   } else if (currentPage === SHORTCUT_PAGE) {

@@ -97,14 +97,15 @@ h1 {
     padding: 0.25rem;
 }
 
-header p {
+header p,
+header label {
     font-size: 1.2rem;
 }
 
 a,
- a:link,
- a:visited,
- a:hover,
- a:active {
+a:link,
+a:visited,
+a:hover,
+a:active {
     color: white;
- }
+}
