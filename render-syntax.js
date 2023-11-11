@@ -54,12 +54,13 @@ function renderSyntax() {
     nextHTML += `<div class="entry__group">${grouping}</div>`;
 
     Object.entries(options).forEach(([option, description]) => {
+      const renderedOption = ACTION_SVG[option] || ELEMENT_SVG[option]
       nextHTML += `
         <div class="entry__container">
           <div class="entry__description">${description}</div>
           <div class="entry-image__container">
             <svg viewBox="0 0 100 100">
-              ${ACTION_SVG[option] || ELEMENT_SVG[option]}
+              ${renderedOption ? renderedOption : `<text x="20" y="60" fill="black">${option}</text>`}
             </svg>
           </div>
           <div class="entry__command">${option}</div>

@@ -152,7 +152,7 @@ const v4_1_0 = {
     },
     {
       description: "Clip play direction",
-      command: "hold(SHIFT) press(1 5)",
+      command: "hold(SHIFT) press(1,5)",
     },
     {
       description: "Euclidian seq events - number of events / notes",
@@ -288,7 +288,7 @@ const v4_1_0 = {
     },
     {
       description: "Rename kit row or instrument",
-      command: "hold(AUDITION) press(3 12)",
+      command: "hold(AUDITION) press(3,12)",
     },
   ],
   "Audio clips": [
@@ -322,7 +322,7 @@ const v4_1_0 = {
     },
     {
       description: "Waveform start / end point",
-      command: "hold(SHIFT) press(1 1)",
+      command: "hold(SHIFT) press(1,1)",
     },
     {
       description: "Adjust length - audio clip waveform",
@@ -356,7 +356,7 @@ const v4_1_0 = {
     },
     {
       description: "Setting up choke group",
-      command: "hold(AUDITION) press(7 8) turn(SELECT) menu(CHOKE) press(SELECT)",
+      command: "hold(AUDITION) press(7,8) turn(SELECT) menu(CHOKE) press(SELECT)",
     },
     {
       description: "Cycle default scales",
@@ -376,7 +376,7 @@ const v4_1_0 = {
     },
     {
       description: "Kit clip affect all - first select parameter",
-      command: "hold(SHIFT) hold(GRID) press(AFFECT) turn(SELECT)",
+      command: "hold(SHIFT) hold(GRID) press(ENTIRE) turn(SELECT)",
     },
     {
       description: "Select kit/ instrument row silently",
@@ -418,7 +418,7 @@ const v4_1_0 = {
     },
     {
       description: "External sound source",
-      command: "hold(SHIFT) press(6 3) turn(SELECT) menu(IN) press(PLAY)",
+      command: "hold(SHIFT) press(6,3) turn(SELECT) menu(IN) press(PLAY)",
     },
     {
       description: "Record to arranger - live record parameter changes and MIDI notes (RECORD to end)",
@@ -430,7 +430,7 @@ const v4_1_0 = {
     },
     {
       description: "Waveform edit view - change start / end / loop",
-      command: "hold(SHIFT) press(1 1)",
+      command: "hold(SHIFT) press(1,1)",
     },
     {
       description: "Zoom in and out",
@@ -584,7 +584,7 @@ const v4_1_0 = {
     },
     {
       description: "Rename track",
-      command: "hold(AUDITION) press(3 12)",
+      command: "hold(AUDITION) press(3,12)",
     },
   ],
   "Parameter dials": [

@@ -1,5 +1,6 @@
 const SYNTAX = {
   buttons: {
+    "3,12": "Grid button coordinates (X,Y) where upper-left grid button is 1,1",
     X: "X (Left/Right) encoder",
     Y: "Y (Up/Down) encoder",
 
@@ -9,7 +10,7 @@ const SYNTAX = {
 
     ENTIRE: "Affect Entire button",
     SONG: "Song button",
-    SONG: "Clip button",
+    CLIP: "Clip button",
 
     SELECT: "Select (Settings) encoder",
 
@@ -17,6 +18,7 @@ const SYNTAX = {
     KIT: "Kit button",
     MIDI: "MIDI button",
     CV: "CV button",
+    KEY: "Key button (keyboard icon)",
     SCALE: "Scale button",
     CROSS: "Cross-screen button",
 

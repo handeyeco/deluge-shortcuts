@@ -76,6 +76,7 @@ const ELEMENT_SVG = {
   KIT: drawTextCircle("KT"),
   MIDI: drawTextCircle("MD"),
   CV: drawTextCircle("CV"),
+  KEY: drawTextCircle("K"),
   SCALE: drawTextCircle("SC"),
   CROSS: drawTextCircle("CR"),
   BACK: drawTextCircle("BK"),
@@ -114,13 +115,22 @@ function drawElement(element) {
 }
 
 function drawActionElementGroup(action, element, index) {
-  const groupContent =
-    action === "menu"
-      ? drawElement("MENU")
-      : `
-        ${drawAction(action)}
-        ${drawElement(element)}
-      `;
+  const gridRegex = /^\d+,\d+$/
+
+  let groupContent
+  if (action === "menu") {
+    groupContent = drawElement("MENU")
+  } else if (gridRegex.test(element)) {
+    groupContent = `
+      ${drawAction(action)}
+      <text x="20" y="60" fill="black">${element}</text>
+    `
+  } else {
+    groupContent = `
+      ${drawAction(action)}
+      ${drawElement(element)}
+    `
+  }
 
   return `
     <g transform="translate(${D * index + S * index})">
@@ -130,13 +140,13 @@ function drawActionElementGroup(action, element, index) {
 }
 
 function drawShortcut(shortcut) {
-  const stepsRegex = /\w+\([A-Za-z _]+\)/g;
+  const stepsRegex = /\w+\([a-zA-Z0-9_ ,]+\)/g;
   const steps = shortcut.match(stepsRegex);
 
   let nextHTML = "";
 
   steps.forEach((step, i) => {
-    const [_, action, element] = step.match(/(\w+)\(([A-Za-z _]+)\)/);
+    const [_, action, element] = step.match(/(\w+)\(([a-zA-Z0-9_ ,]+)\)/);
     nextHTML += drawActionElementGroup(action, element, i);
   });
 
