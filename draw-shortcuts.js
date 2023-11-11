@@ -29,10 +29,16 @@ const ACTION_SVG = {
     A / 2
   }" stroke="#111" stroke-width="4" fill="none" stroke-dasharray="40 10" />
   `,
-  menu: ` 
-    <text x="18" y="60" fill="#111">SCR</text>
-  `,
+  menu: drawCenteredText("SCR"),
 };
+
+function drawCenteredText(text, fill = BLACK) {
+  return `
+    <text x="${D/2}" y="${D/2}" fill="${fill}" dominant-baseline="central" text-anchor="middle">
+      ${text}
+    </text>
+  `
+}
 
 function drawCircle(fill, stroke) {
   return `<circle cx="${D / 2}" cy="${D / 2}" r="${
@@ -50,7 +56,7 @@ function drawTextCircle(text, fill = L_GREY, stroke = D_GREY, color = BLACK) {
   const x = text.length === 2 ? "30" : "40";
   return `
     ${drawCircle(fill, stroke)}
-    <text x="${x}" y="60" fill="${color}">${text}</text>
+    ${drawCenteredText(text, color)}
   `;
 }
 
@@ -58,7 +64,7 @@ function drawTextGrid(text, fill = D_GREY, stroke = L_GREY, color = BLACK) {
   const x = text.length === 2 ? "30" : "40";
   return `
     ${drawGrid(fill, stroke)}
-    <text x="${x}" y="60" fill="${color}">${text}</text>
+    ${drawCenteredText(text, color)}
   `;
 }
 
@@ -98,12 +104,8 @@ const ELEMENT_SVG = {
   WAVE_END: drawTextGrid("E", "#ff2e17", "#ff2e17", WHITE),
   WAVE_LOOP_START: drawTextGrid("LS", "#48cff0", "#48cff0"),
   WAVE_LOOP_END: drawTextGrid("LE", "#664aa6", "#664aa6", WHITE),
-  MENU: ` 
-    <text x="18" y="60" fill="#111">SCR</text>
-  `,
-  EXTERNAL: ` 
-    <text x="18" y="60" fill="#111">EXT</text>
-  `,
+  MENU: drawCenteredText("SCR"),
+  EXTERNAL: drawCenteredText("EXT"),
 };
 
 function drawAction(action) {
@@ -123,7 +125,7 @@ function drawActionElementGroup(action, element, index) {
   } else if (gridRegex.test(element)) {
     groupContent = `
       ${drawAction(action)}
-      <text x="20" y="60" fill="#111">${element}</text>
+      ${drawCenteredText(element)}
     `
   } else {
     groupContent = `
