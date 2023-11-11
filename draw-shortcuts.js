@@ -27,7 +27,7 @@ const ACTION_SVG = {
   turn: `
     <circle cx="${D / 2}" cy="${D / 2}" r="${
     A / 2
-  }" stroke="black" stroke-width="4" fill="none" stroke-dasharray="20% 5%" />
+  }" stroke="black" stroke-width="4" fill="none" stroke-dasharray="40 10" />
   `,
   menu: ` 
     <text x="18" y="60" fill="black">SCR</text>
@@ -46,10 +46,18 @@ function drawGrid(fill, stroke) {
   }" rx="15" fill="${fill}" stroke="${stroke}" stroke-width="1" />`;
 }
 
-function drawTextCircle(text, stroke = L_GREY, fill = D_GREY, color = BLACK) {
+function drawTextCircle(text, fill = L_GREY, stroke = D_GREY, color = BLACK) {
   const x = text.length === 2 ? "30" : "40";
   return `
-    ${drawCircle(stroke, fill)}
+    ${drawCircle(fill, stroke)}
+    <text x="${x}" y="60" fill="${color}">${text}</text>
+  `;
+}
+
+function drawTextGrid(text, fill = D_GREY, stroke = L_GREY, color = BLACK) {
+  const x = text.length === 2 ? "30" : "40";
+  return `
+    ${drawGrid(fill, stroke)}
     <text x="${x}" y="60" fill="${color}">${text}</text>
   `;
 }
@@ -57,45 +65,43 @@ function drawTextCircle(text, stroke = L_GREY, fill = D_GREY, color = BLACK) {
 const ELEMENT_SVG = {
   X: drawTextCircle("X", BLACK, BLACK, WHITE),
   Y: drawTextCircle("Y", BLACK, BLACK, WHITE),
-  PARAMETER: drawCircle("#FFD700", "#FFD700"),
+  PARAMETER: drawTextCircle("PA", "#FFD700", "#FFD700"),
+  LOWER_PARAM: drawTextCircle("LP", "#FFD700", "#FFD700"),
+  UPPER_PARAM: drawTextCircle("UP", "#FFD700", "#FFD700"),
   ENTIRE: drawTextCircle("AE"),
   SONG: drawTextCircle("SN"),
+  CLIP: drawTextCircle("CP"),
   SELECT: drawTextCircle("S", BLACK, BLACK, WHITE),
   SYNTH: drawTextCircle("SY"),
   KIT: drawTextCircle("KT"),
   MIDI: drawTextCircle("MD"),
   CV: drawTextCircle("CV"),
   SCALE: drawTextCircle("SC"),
+  CROSS: drawTextCircle("CR"),
   BACK: drawTextCircle("BK"),
   LOAD: drawTextCircle("LD"),
   SAVE: drawTextCircle("SV"),
-  LEARN: drawTextCircle("L"),
+  LEARN: drawTextCircle("LN"),
   TEMPO: drawTextCircle("T", BLACK, BLACK, WHITE),
+  TAP: drawTextCircle("TP"),
+  SYNC: drawTextCircle("SY"),
   PLAY: drawTextCircle("P", "#51dd00", "#16830f"),
   RECORD: drawTextCircle("R", "#fe5c2e", "#ae140b"),
   SHIFT: drawTextCircle("S"),
-  GRID: `
-    ${drawGrid(WHITE, D_GREY)}
-    <text x="40" y="60" fill="black">G</text>
-  `,
-  GRID_LIT: `
-    ${drawGrid(L_GREY, D_GREY)}
-    <text x="40" y="60" fill="black">G</text>
-  `,
-  GRID_UNLIT: `
-    ${drawGrid(D_GREY, L_GREY)}
-    <text x="40" y="60" fill="white">G</text>
-  `,
-  LAUNCH: `
-    ${drawGrid(L_GREY, D_GREY)}
-    <text x="40" y="60" fill="black">L</text>
-  `,
-  AUDITION: `
-    ${drawGrid(L_GREY, D_GREY)}
-    <text x="40" y="60" fill="black">A</text>
-  `,
+  GRID: drawTextGrid("G", WHITE, BLACK),
+  GRID_LIT: drawTextGrid("G", L_GREY, D_GREY),
+  GRID_UNLIT: drawTextGrid("G", D_GREY, L_GREY, WHITE),
+  LAUNCH: drawTextGrid("L", L_GREY, D_GREY),
+  AUDITION: drawTextGrid("A", L_GREY, D_GREY),
+  WAVE_START: drawTextGrid("S", "#61c049", "#61c049"),
+  WAVE_END: drawTextGrid("E", "#ff2e17", "#ff2e17", WHITE),
+  WAVE_LOOP_START: drawTextGrid("LS", "#48cff0", "#48cff0"),
+  WAVE_LOOP_END: drawTextGrid("LE", "#664aa6", "#664aa6", WHITE),
   MENU: ` 
     <text x="18" y="60" fill="black">SCR</text>
+  `,
+  EXTERNAL: ` 
+    <text x="18" y="60" fill="black">EXT</text>
   `,
 };
 
@@ -136,7 +142,7 @@ function drawShortcut(shortcut) {
 
   return `
     <div class="entry-image__container">
-      <svg viewBox="0 0 500 100">
+      <svg viewBox="0 0 1000 100">
         ${nextHTML}
       </svg>
     </div>

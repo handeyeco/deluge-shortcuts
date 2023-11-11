@@ -1,7 +1,7 @@
 function filterShortcuts() {
-  if (!search) return SHORTCUTS;
+  if (!search) return v4_1_0;
 
-  const clone = structuredClone(SHORTCUTS);
+  const clone = structuredClone(v4_1_0);
   const filtered = {};
 
   for (const [grouping, shortcuts] of Object.entries(clone)) {
