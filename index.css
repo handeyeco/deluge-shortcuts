@@ -96,3 +96,15 @@ h1 {
     display: inline-block;
     padding: 0.25rem;
 }
+
+header p {
+    font-size: 1.2rem;
+}
+
+a,
+ a:link,
+ a:visited,
+ a:hover,
+ a:active {
+    color: white;
+ }
