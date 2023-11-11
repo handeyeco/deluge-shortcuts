@@ -1,3 +1,11 @@
+function renderNoResults() {
+  return `
+    <div class="entry__container">
+      <div class="entry__description">No results match search</div>
+    </div>
+  `
+}
+
 function filterShortcuts() {
   if (!search) return v4_1_0;
 
@@ -22,7 +30,7 @@ function renderShortcuts() {
 
   const filtered = filterShortcuts();
   if (!filtered) {
-    mount.innerHTML = "No results match search";
+    mount.innerHTML = renderNoResults();
     return;
   }
 

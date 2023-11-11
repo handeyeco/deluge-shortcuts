@@ -7,7 +7,7 @@ const E = A - 20;
 // Spacing between commands
 const S = 10;
 
-const BLACK = "#000";
+const BLACK = "#111";
 const WHITE = "#FFF";
 const L_GREY = "#CCC";
 const D_GREY = "#666";
@@ -16,21 +16,21 @@ const ACTION_SVG = {
   press: `
     <circle cx="${D / 2}" cy="${D / 2}" r="${
     A / 2
-  }" stroke="black" stroke-width="4" fill="none" />
+  }" stroke="#111" stroke-width="4" fill="none" />
   `,
   hold: `
-    <rect x="7" y="7" width="${A}" height="${A}" stroke="black" stroke-width="4" fill="none" />
+    <rect x="7" y="7" width="${A}" height="${A}" stroke="#111" stroke-width="4" fill="none" />
   `,
   release: `
-    <rect x="7" y="7" width="${A}" height="${A}" stroke="black" stroke-width="4" stroke-dasharray="8" fill="none" />
+    <rect x="7" y="7" width="${A}" height="${A}" stroke="#111" stroke-width="4" stroke-dasharray="8" fill="none" />
   `,
   turn: `
     <circle cx="${D / 2}" cy="${D / 2}" r="${
     A / 2
-  }" stroke="black" stroke-width="4" fill="none" stroke-dasharray="40 10" />
+  }" stroke="#111" stroke-width="4" fill="none" stroke-dasharray="40 10" />
   `,
   menu: ` 
-    <text x="18" y="60" fill="black">SCR</text>
+    <text x="18" y="60" fill="#111">SCR</text>
   `,
 };
 
@@ -86,8 +86,8 @@ const ELEMENT_SVG = {
   TEMPO: drawTextCircle("T", BLACK, BLACK, WHITE),
   TAP: drawTextCircle("TP"),
   SYNC: drawTextCircle("SY"),
-  PLAY: drawTextCircle("P", "#51dd00", "#16830f"),
-  RECORD: drawTextCircle("R", "#fe5c2e", "#ae140b"),
+  PLAY: drawTextCircle("P", "#61c049", "#61c049"),
+  RECORD: drawTextCircle("R", "#ff2e17", "#ff2e17", WHITE),
   SHIFT: drawTextCircle("S"),
   GRID: drawTextGrid("G", WHITE, BLACK),
   GRID_LIT: drawTextGrid("G", L_GREY, D_GREY),
@@ -99,10 +99,10 @@ const ELEMENT_SVG = {
   WAVE_LOOP_START: drawTextGrid("LS", "#48cff0", "#48cff0"),
   WAVE_LOOP_END: drawTextGrid("LE", "#664aa6", "#664aa6", WHITE),
   MENU: ` 
-    <text x="18" y="60" fill="black">SCR</text>
+    <text x="18" y="60" fill="#111">SCR</text>
   `,
   EXTERNAL: ` 
-    <text x="18" y="60" fill="black">EXT</text>
+    <text x="18" y="60" fill="#111">EXT</text>
   `,
 };
 
@@ -123,7 +123,7 @@ function drawActionElementGroup(action, element, index) {
   } else if (gridRegex.test(element)) {
     groupContent = `
       ${drawAction(action)}
-      <text x="20" y="60" fill="black">${element}</text>
+      <text x="20" y="60" fill="#111">${element}</text>
     `
   } else {
     groupContent = `

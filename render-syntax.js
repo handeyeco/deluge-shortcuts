@@ -23,7 +23,7 @@ function filterSyntax() {
   for (const [grouping, options] of Object.entries(clone)) {
     const filteredOptions = {};
 
-    Objext.entries(options).forEach(([option, description]) => {
+    Object.entries(options).forEach(([option, description]) => {
       if (
         option.toLowerCase().includes(search.toLowerCase()) ||
         description.toLowerCase().includes(search.toLowerCase())
@@ -33,7 +33,7 @@ function filterSyntax() {
     });
 
     if (Object.keys(filteredOptions).length) {
-      filtered[grouping] = filteredShortcuts;
+      filtered[grouping] = filteredOptions;
     }
   }
 
@@ -45,7 +45,7 @@ function renderSyntax() {
 
   const filtered = filterSyntax();
   if (!filtered) {
-    mount.innerHTML = "No results match search";
+    mount.innerHTML = renderNoResults();
     return;
   }
 
