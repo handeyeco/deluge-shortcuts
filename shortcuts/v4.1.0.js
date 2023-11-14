@@ -205,7 +205,7 @@ const v4_1_0 = {
       command: "hold(AUDITION) turn(SELECT)",
     },
     {
-      description: "Clone clip (hold source, press destination)",
+      description: "Clone/duplicate clip (hold source, press destination)",
       command: "hold(GRID) press(GRID)",
     },
     {
@@ -337,6 +337,14 @@ const v4_1_0 = {
     {
       description: "New kit",
       command: "hold(SHIFT) press(KIT)",
+    },
+    {
+      description: "View synth preset browser",
+      command: "hold(LOAD) press(SYNTH)",
+    },
+    {
+      description: "View kit preset browser",
+      command: "hold(LOAD) press(KIT)",
     },
     {
       description: "Save synth preset",
