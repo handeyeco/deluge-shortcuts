@@ -35,7 +35,7 @@ const SYNTAX = {
     RECORD: "Record button",
     SHIFT: "Shift button",
 
-    GRID: "Grip pad (lit or unlit)",
+    GRID: "Grid pad (lit or unlit)",
     GRID_UNLIT: "Unlit grid pad",
     GRID_LIT: "Lit grid pad",
     WAVE_START: "Green grid column representing waveform start",
