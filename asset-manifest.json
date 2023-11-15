@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/deluge-shortcuts/static/css/main.c8b8b376.css",
+    "main.js": "/deluge-shortcuts/static/js/main.bb426502.js",
+    "index.html": "/deluge-shortcuts/index.html",
+    "main.c8b8b376.css.map": "/deluge-shortcuts/static/css/main.c8b8b376.css.map",
+    "main.bb426502.js.map": "/deluge-shortcuts/static/js/main.bb426502.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c8b8b376.css",
+    "static/js/main.bb426502.js"
+  ]
+}
