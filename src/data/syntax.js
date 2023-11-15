@@ -1,5 +1,21 @@
+function process(list) {
+  const output = {};
+  Object.entries(list).forEach(([group, subgroup]) => {
+    const processedSubGroup = [];
+    Object.entries(subgroup).forEach(([command, description]) => {
+      processedSubGroup.push({
+        title: command,
+        description: description,
+        command: command,
+      });
+    });
+    output[group] = processedSubGroup;
+  });
+  return output;
+}
+
 const SYNTAX = {
-  buttons: {
+  Controls: {
     "3,12": "Grid button coordinates (X,Y) where upper-left grid button is 1,1",
     X: "X (Left/Right) encoder",
     Y: "Y (Up/Down) encoder",
@@ -46,7 +62,7 @@ const SYNTAX = {
     AUDITION: "Audition / Section button for row",
     EXTERNAL: "Use external MIDI controller",
   },
-  actions: {
+  Actions: {
     hold: "Hold",
     release: "Release",
     press: "Press",
@@ -54,3 +70,5 @@ const SYNTAX = {
     menu: "Select option from menu",
   },
 };
+
+export default process(SYNTAX);

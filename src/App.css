@@ -1,0 +1,71 @@
+header {
+  position: fixed;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: #111;
+  color: white;
+  border-top: 3px solid white;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  box-shadow: 0 0 10px #111;
+}
+
+header input {
+  display: block;
+  flex: 1;
+  padding: 0.5rem 1rem;
+  color: #111;
+  border: 2px solid #111;
+  border-radius: 0.5rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: white;
+  padding-bottom: 2rem;
+}
+
+.container {
+  font-size: 1.6rem;
+}
+
+.content__container {
+  max-width: 800px;
+  margin: 5rem auto 15rem;
+}
+
+.page-tabs {
+  display: flex;
+  padding-bottom: 2rem;
+}
+
+.page-tabs button {
+  flex: 1;
+  padding: 1rem;
+  font-weight: bold;
+  background: #111;
+  color: white;
+  border: 2px solid white;
+}
+
+.page-tabs button.active {
+  color: #111;
+  background: white;
+}
+
+header p,
+header label {
+  font-size: 1.2rem;
+}
+
+a,
+a:link,
+a:visited,
+a:hover,
+a:active {
+  color: white;
+}

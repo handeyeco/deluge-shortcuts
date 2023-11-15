@@ -1,0 +1,22 @@
+.list-item {
+  padding: 2rem 1rem;
+  background: white;
+  border-bottom: 1px solid #111;
+}
+
+.list-item__title {
+  font-weight: bold;
+  padding-bottom: 2rem;
+}
+
+.list-item__description {
+  font-size: 0.8em;
+  padding-bottom: 2rem;
+}
+
+.list-item__command {
+  background: #eee;
+  font-family: monospace;
+  display: inline-block;
+  padding: 0.25rem;
+}

@@ -1,0 +1,12 @@
+.shortcut-image__container {
+  height: 4rem;
+  padding-bottom: 2rem;
+}
+
+.shortcut-image__container svg {
+  height: 100%;
+}
+
+.shortcut-image__container text {
+  font: bold 30px sans-serif;
+}
