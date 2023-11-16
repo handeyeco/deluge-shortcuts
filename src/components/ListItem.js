@@ -15,7 +15,7 @@ function ListItem({ title = "", description = "", command = "", views = [] }) {
       <div className="list-item__command">{command}</div>
 
       {!!(views && views.length) && (
-        <div className="list-item__views">{views.join(" ")}</div>
+        <div className="list-item__views">Views: {views.join(", ")}</div>
       )}
     </div>
   );

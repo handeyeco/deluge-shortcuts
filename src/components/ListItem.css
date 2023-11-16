@@ -19,4 +19,9 @@
   font-family: monospace;
   display: inline-block;
   padding: 0.25rem;
+  margin-bottom: 2rem;
+}
+
+.list-item__views {
+  font-size: 0.75em;
 }
