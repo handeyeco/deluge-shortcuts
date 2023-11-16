@@ -1,12 +1,15 @@
+.list-page__search form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
 .list-page__search {
   background: #111;
   color: white;
   border-bottom: 2px solid white;
   padding: 0 1rem 1.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: stretch;
 }
 
 .list-page__search input {

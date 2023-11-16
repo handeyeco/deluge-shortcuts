@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { useLocation } from "react-router-dom";
 
 import v4_1_0 from "../data/shortcuts-v4_1_0";
@@ -10,6 +11,7 @@ import useSearch from "../hooks/useSearch";
 import "./ListPage.css";
 
 function ListPage() {
+  const inputRef = useRef();
   const location = useLocation();
   const { search, setSearch } = useSearch();
 
@@ -17,15 +19,26 @@ function ListPage() {
 
   const filteredList = filterList(search, isShortcutPage ? v4_1_0 : SYNTAX);
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (inputRef.current) {
+      inputRef.current.blur();
+    }
+  }
+
   return (
     <div>
       <div className="list-page__search">
-        <label htmlFor="search">Filter</label>
-        <input
-          name="search"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="search">Filter</label>
+          <input
+            ref={inputRef}
+            name="search"
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </form>
         {isShortcutPage && (
           <p className="list-page__search-example">
             action:press control:SELECT view:arranger "exact search"
