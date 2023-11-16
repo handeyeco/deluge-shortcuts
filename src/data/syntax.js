@@ -16,7 +16,6 @@ function process(list) {
     });
     output[group] = processedSubGroup;
   });
-  console.log(output);
   return output;
 }
 

@@ -1,5 +1,18 @@
 import { Link } from "react-router-dom";
+
+import v4_1_0 from "../data/shortcuts-v4_1_0";
+import SYNTAX from "../data/syntax";
+import generateCrossReference from "../util/crossRef";
+
 import "./AboutPage.css";
+
+const crossReference = JSON.stringify(
+  generateCrossReference(SYNTAX, v4_1_0),
+  null,
+  2
+);
+const crDataString =
+  "data:text/json;charset=utf-8," + encodeURIComponent(crossReference);
 
 function AboutPage() {
   return (
@@ -48,6 +61,11 @@ function AboutPage() {
         </a>
         .
       </p>
+
+      <h2>Extra</h2>
+      <a href={crDataString} download="cross-reference.json">
+        Download cross-reference as JSON
+      </a>
     </div>
   );
 }
