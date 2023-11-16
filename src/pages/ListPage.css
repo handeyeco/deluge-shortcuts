@@ -1,0 +1,29 @@
+.list-page__search {
+  position: fixed;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: #111;
+  color: white;
+  border-top: 3px solid white;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  box-shadow: 0 0 10px #111;
+}
+
+.list-page__search input {
+  display: block;
+  flex: 1;
+  padding: 0.5rem 1rem;
+  color: #111;
+  border: 2px solid #111;
+  border-radius: 0.5rem;
+}
+
+.list-page__search p,
+.list-page__search label {
+  font-size: 1.2rem;
+}
