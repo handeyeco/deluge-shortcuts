@@ -13,10 +13,9 @@ function ListPage() {
   const location = useLocation();
   const { search, setSearch } = useSearch();
 
-  const filteredList = filterList(
-    search,
-    location.pathname.includes("shortcuts") ? v4_1_0 : SYNTAX
-  );
+  const isShortcutPage = location.pathname.includes("shortcuts");
+
+  const filteredList = filterList(search, isShortcutPage ? v4_1_0 : SYNTAX);
 
   return (
     <div>
@@ -27,11 +26,13 @@ function ListPage() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <p className="list-page__search-example">
-          action:press control:SELECT view:arranger "exact search"
-        </p>
+        {isShortcutPage && (
+          <p className="list-page__search-example">
+            action:press control:SELECT view:arranger "exact search"
+          </p>
+        )}
       </div>
-      {filteredList ? <List data={filteredList} /> : <NoResults />}
+      <div>{filteredList ? <List data={filteredList} /> : <NoResults />}</div>
     </div>
   );
 }
