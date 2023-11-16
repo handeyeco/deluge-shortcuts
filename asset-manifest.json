@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/deluge-shortcuts/static/css/main.c8b8b376.css",
-    "main.js": "/deluge-shortcuts/static/js/main.bb426502.js",
+    "main.css": "/deluge-shortcuts/static/css/main.dc2c6b5f.css",
+    "main.js": "/deluge-shortcuts/static/js/main.affb13d6.js",
     "index.html": "/deluge-shortcuts/index.html",
-    "main.c8b8b376.css.map": "/deluge-shortcuts/static/css/main.c8b8b376.css.map",
-    "main.bb426502.js.map": "/deluge-shortcuts/static/js/main.bb426502.js.map"
+    "main.dc2c6b5f.css.map": "/deluge-shortcuts/static/css/main.dc2c6b5f.css.map",
+    "main.affb13d6.js.map": "/deluge-shortcuts/static/js/main.affb13d6.js.map"
   },
   "entrypoints": [
-    "static/css/main.c8b8b376.css",
-    "static/js/main.bb426502.js"
+    "static/css/main.dc2c6b5f.css",
+    "static/js/main.affb13d6.js"
   ]
 }
