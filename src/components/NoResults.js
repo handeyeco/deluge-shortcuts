@@ -1,7 +1,15 @@
+import { useLocation, Link } from "react-router-dom";
 import "./NoResults.css";
 
 function NoResults() {
-  return <div className="no-results">No results match your search</div>;
+  const location = useLocation();
+  return (
+    <div className="no-results">
+      <Link to={location.pathname}>
+        No results match your search. Click to clear.
+      </Link>
+    </div>
+  );
 }
 
 export default NoResults;

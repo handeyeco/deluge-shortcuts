@@ -28,9 +28,11 @@ describe("filterList", () => {
     });
 
     it("doesn't mess with special commands", () => {
-      const result = splitSearch("action:push control:GRID_LIT view:Song test");
+      const result = splitSearch(
+        "action:press control:GRID_LIT view:Song test"
+      );
       expect(result).toEqual([
-        "action:push",
+        "action:press",
         "control:GRID_LIT",
         "view:Song",
         "test",
@@ -45,22 +47,22 @@ describe("filterList", () => {
 
   describe("isCommandMatch", () => {
     it("matches whole word action match", () => {
-      const result = isCommandMatch("push(SELECT)", "push");
+      const result = isCommandMatch("press(SELECT)", "press");
       expect(result).toBe(true);
     });
 
     it("matches whole word control match", () => {
-      const result = isCommandMatch("push(SELECT)", "SELECT");
+      const result = isCommandMatch("press(SELECT)", "SELECT");
       expect(result).toBe(true);
     });
 
     it("doesn't match partials", () => {
-      const result = isCommandMatch("push(SELECT)", "SEL");
+      const result = isCommandMatch("press(SELECT)", "SEL");
       expect(result).toBe(false);
     });
 
     it("is case insensitive", () => {
-      const result = isCommandMatch("push(SELECT)", "select");
+      const result = isCommandMatch("press(SELECT)", "select");
       expect(result).toBe(true);
     });
   });
@@ -72,13 +74,13 @@ describe("filterList", () => {
     });
 
     it("returns false when action doesn't match", () => {
-      const result = isMatch(mockEntry(), ["action:push"]);
+      const result = isMatch(mockEntry(), ["action:hold"]);
       expect(result).toBe(false);
     });
 
     it("returns true when action does match", () => {
-      const result = isMatch(mockEntry({ command: "push(SELECT)" }), [
-        "action:push",
+      const result = isMatch(mockEntry({ command: "press(SELECT)" }), [
+        "action:press",
       ]);
       expect(result).toBe(true);
     });
@@ -89,7 +91,7 @@ describe("filterList", () => {
     });
 
     it("returns true when control does match", () => {
-      const result = isMatch(mockEntry({ command: "push(SELECT)" }), [
+      const result = isMatch(mockEntry({ command: "press(SELECT)" }), [
         "control:SELECT",
       ]);
       expect(result).toBe(true);

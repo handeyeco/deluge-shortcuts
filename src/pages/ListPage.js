@@ -27,11 +27,8 @@ function ListPage() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <p>
-          No affiliation with Synthstrom. From v4.1.0 manual.{" "}
-          <a href="https://github.com/handeyeco/deluge-shortcuts">
-            Submit issue.
-          </a>
+        <p className="list-page__search-example">
+          action:press control:SELECT view:arranger "exact search"
         </p>
       </div>
       {filteredList ? <List data={filteredList} /> : <NoResults />}

@@ -10,7 +10,7 @@ If you see a mistake, please report it! (Issues and PRs welcome)
 
 Not affiliated with Synthstrom.
 
-Shortcuts from the v4.1.0 manual available on the [Synthstrom site](https://synthstrom.com/), made in collaboration with [Synthdawg](https://www.synthdawg.com/).
+Shortcuts from the v4.1.0 manual available on the [Synthstrom site](https://synthstrom.com/) which was made in collaboration with [Synthdawg](https://www.synthdawg.com/).
 
 Inspired by [Neil Baldwin's](https://marmotaudio.co.uk/) excellent [cheat sheet](https://forums.synthstrom.com/discussion/2403/v3-cheat-sheet-iconized).
 

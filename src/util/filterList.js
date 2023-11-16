@@ -27,7 +27,7 @@ export function isMatch(entry, searchOptions) {
     if (commandMatch) {
       const [_, cmd, param] = commandMatch;
 
-      // ex: action:push or control:SELECT
+      // ex: action:press or control:SELECT
       if (
         (cmd.toLowerCase() === "action" || cmd.toLowerCase() === "control") &&
         !isCommandMatch(entry.command, param)

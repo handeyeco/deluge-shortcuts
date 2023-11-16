@@ -27,3 +27,17 @@
 .list-page__search label {
   font-size: 1.2rem;
 }
+
+.list-page__search a,
+.list-page__search a:link,
+.list-page__search a:visited,
+.list-page__search a:hover,
+.list-page__search a:active {
+  color: white;
+}
+
+.list-page__search-example {
+  text-align: right;
+  opacity: 0.6;
+  padding-top: 0.5rem;
+}

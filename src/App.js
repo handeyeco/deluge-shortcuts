@@ -1,5 +1,6 @@
 import { Link, useLocation, Navigate, Routes, Route } from "react-router-dom";
 import ListPage from "./pages/ListPage";
+import AboutPage from "./pages/AboutPage";
 
 import "./App.css";
 
@@ -32,12 +33,21 @@ function App() {
                 Legend
               </Link>
             </li>
+            <li>
+              <Link
+                to={"about"}
+                className={onPath(location, "about") ? "active" : ""}
+              >
+                About
+              </Link>
+            </li>
           </ul>
         </nav>
 
         <Routes>
           <Route path="/shortcuts" element={<ListPage />} />
           <Route path="/legend" element={<ListPage />} />
+          <Route path="/about" element={<AboutPage />} />
           <Route path="*" element={<Navigate to="shortcuts" replace />} />
         </Routes>
       </div>

@@ -1,0 +1,22 @@
+.about-page {
+  background: white;
+  padding: 1rem;
+  font-size: 0.9em;
+}
+
+.about-page h2 {
+  margin: 1rem 0 2rem;
+  border-bottom: 1px solid #111;
+}
+
+.about-page p {
+  margin-bottom: 2rem;
+}
+
+.about-page__command {
+  background: #eee;
+  font-family: monospace;
+  display: inline-block;
+  padding: 0.25rem;
+  margin-bottom: 2rem;
+}
