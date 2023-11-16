@@ -3,6 +3,7 @@ import SYNTAX from "./data/syntax";
 import filterList from "./util/filterList";
 import { useState } from "react";
 import List from "./components/List";
+import NoResults from "./components/NoResults";
 import "./App.css";
 
 const SHORTCUT_PAGE = "SHORTCUT_PAGE";
@@ -54,7 +55,7 @@ function App() {
             Legend
           </button>
         </div>
-        <List data={filteredList} />
+        {filteredList ? <List data={filteredList} /> : <NoResults />}
       </div>
     </div>
   );
