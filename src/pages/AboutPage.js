@@ -28,9 +28,11 @@ function AboutPage() {
 
       <h2>Credits</h2>
       <p>
+        There's a high likelihood of mistakes:{" "}
         <a href="https://github.com/handeyeco/deluge-shortcuts">
-          Source code (submit issues here).
+          source and issues here
         </a>
+        .
       </p>
       <p>Not affiliated with Synthstrom.</p>
       <p>

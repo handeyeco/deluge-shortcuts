@@ -1,3 +1,7 @@
+function createLink(group, command) {
+  return `/shortcuts?q=${group}:${command}`;
+}
+
 function process(list) {
   const output = {};
   Object.entries(list).forEach(([group, subgroup]) => {
@@ -6,16 +10,18 @@ function process(list) {
       processedSubGroup.push({
         title: command,
         description: description,
-        command: command,
+        command: group === "Views" ? null : command,
+        link: createLink(group, command),
       });
     });
     output[group] = processedSubGroup;
   });
+  console.log(output);
   return output;
 }
 
 const SYNTAX = {
-  Controls: {
+  control: {
     "3,12": "Grid button coordinates (X,Y) where upper-left grid button is 1,1",
     X: "X (Left/Right) encoder",
     Y: "Y (Up/Down) encoder",
@@ -62,12 +68,23 @@ const SYNTAX = {
     AUDITION: "Audition / Section button for row",
     EXTERNAL: "Use external MIDI controller",
   },
-  Actions: {
+  action: {
     hold: "Hold",
     release: "Release",
     press: "Press",
     turn: "Turn",
     menu: "Select option from menu",
+  },
+  view: {
+    global: "Global",
+    song: "Song",
+    arranger: "Arranger",
+    synth: "Synth",
+    kit: "Kit",
+    midi: "MIDI",
+    cv: "CV",
+    audio: "Audio",
+    waveform: "Waveform",
   },
 };
 

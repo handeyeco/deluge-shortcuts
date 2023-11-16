@@ -22,6 +22,7 @@
   margin-bottom: 2rem;
 }
 
-.list-item__views {
+.list-item__views,
+.list-item__link {
   font-size: 0.75em;
 }

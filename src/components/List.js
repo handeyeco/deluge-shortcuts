@@ -12,6 +12,7 @@ function Group({ group, subgroup }) {
           description={e.description}
           command={e.command}
           views={e.views}
+          link={e.link}
         />
       ))}
     </>
