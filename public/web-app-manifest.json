@@ -3,7 +3,7 @@
   "short_name": "DS",
   "description": "A filterable, mobile-friendly list of shortcuts for the Synthstrom Deluge.",
   "display": "standalone",
-  "start_url": "/",
+  "start_url": "/deluge-shortcuts/",
   "lang": "en",
   "theme_color": "#222222",
   "background_color": "#eeeeee",
