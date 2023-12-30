@@ -1,4 +1,52 @@
-const v4_1_0 = {
+// import shortcuts from "./shortcuts-v4_1_0.js"
+// import { Control, Action, View } from "./syntax-constants.js";
+const fs = require('fs');
+
+function convertViews(orig) {
+  return orig.map(e => `$View.${e.toUpperCase()}$`)
+}
+
+function convertCommand(orig) {
+  const output = []
+  const split = orig
+    .split(/[\(\)\s]+/)
+    .filter(Boolean)
+
+  if (split.length % 2 !== 0) {
+    throw new Error(orig)
+  }
+
+  for (let i = 0; i < split.length; i += 2) {
+    output.push({
+      action: `$Action.${split[i].toUpperCase()}$`,
+      control: `$Control.${split[i+1].toUpperCase()}$`,
+    })
+  }
+
+  return output
+}
+
+function main() {
+  const output = {}
+
+  Object.entries(v4_1_0).forEach(([group, commands]) => {
+    const groupOutput = commands.map(cmd => ({
+      name: cmd.title,
+      views: convertViews(cmd.views),
+      steps: convertCommand(cmd.command)
+    }))
+    output[group] = groupOutput
+  })
+
+  console.log(output)
+  var json = JSON.stringify(output, null, 2);
+  json = json.replaceAll(/"*\$"*/gi, "")
+  fs.writeFileSync('./shortcuts.js', `import { Control, Action, View } from "./syntax-constants.js";\n\nconst shortcuts = ` + json, 'utf8');
+
+}
+
+
+var v4_1_0 = {
   Global: [
     {
       title: "View zoom level",
@@ -976,4 +1024,6 @@ const v4_1_0 = {
   ],
 };
 
-export default v4_1_0;
+
+
+main()

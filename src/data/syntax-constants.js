@@ -1,0 +1,66 @@
+export const Control = {
+  X: "X",
+  Y: "Y",
+
+  PARAMETER: "PARAMETER",
+  LOWER_PARAM: "LOWER_PARAM",
+  UPPER_PARAM: "UPPER_PARAM",
+
+  ENTIRE: "ENTIRE",
+  SONG: "SONG",
+  CLIP: "CLIP",
+
+  SELECT: "SELECT",
+
+  SYNTH: "SYNTH",
+  KIT: "KIT",
+  MIDI: "MIDI",
+  CV: "CV",
+  KEY: "KEY",
+  SCALE: "SCALE",
+  CROSS: "CROSS",
+
+  BACK: "BACK",
+  LOAD: "LOAD",
+  SAVE: "SAVE",
+  LEARN: "LEARN",
+
+  TAP: "TAP",
+  SYNC: "SYNC",
+  TEMPO: "TEMPO",
+
+  PLAY: "PLAY",
+  RECORD: "RECORD",
+  SHIFT: "SHIFT",
+
+  GRID: "GRID",
+  GRID_UNLIT: "GRID_UNLIT",
+  GRID_LIT: "GRID_LIT",
+  WAVE_START: "WAVE_START",
+  WAVE_END: "WAVE_END",
+  WAVE_LOOP_START: "WAVE_LOOP_START",
+  WAVE_LOOP_END: "WAVE_LOOP_END",
+  LAUNCH: "LAUNCH",
+  AUDITION: "AUDITION",
+  EXTERNAL: "EXTERNAL",
+};
+
+export const Action = {
+  HOLD: "HOLD",
+  RELEASE: "RELEASE",
+  PRESS: "PRESS",
+  TURN: "TURN",
+  MENU: "MENU",
+};
+
+export const View = {
+  GLOBAL: "GLOBAL",
+  SONG: "SONG",
+  ARRANGER: "ARRANGER",
+  SYNTH: "SYNTH",
+  KIT: "KIT",
+  MIDI: "MIDI",
+  CV: "CV",
+  AUDIO: "AUDIO",
+  WAVEFORM: "WAVEFORM",
+};
