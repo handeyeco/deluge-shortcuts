@@ -1,11 +1,15 @@
-import { splitSearch, isCommandMatch, isMatch } from "./filterList";
+import { splitSearch, isActionMatch, isControlMatch, isMatch } from "./filterList";
+import { Control, Action, View } from "../data/syntax-constants.js";
 
 function mockEntry(extend = {}) {
   const base = {
-    title: "Mock title",
+    name: "Mock title",
     description: "Mock description",
-    command: "press(SELECT) turn(SELECT)",
-    views: ["song"],
+    steps: [
+      { action: Action.PRESS, control: Control.SELECT },
+      { action: Action.TURN, control: Control.SELECT },
+    ],
+    views: [View.SONG],
   };
   return { ...base, ...extend };
 }
@@ -45,27 +49,53 @@ describe("filterList", () => {
     });
   });
 
-  describe("isCommandMatch", () => {
+  describe("isActionMatch", () => {
     it("matches whole word action match", () => {
-      const result = isCommandMatch("press(SELECT)", "press");
+      const result = isActionMatch([{ action: "PRESS", control: "SELECT" }], "PRESS");
       expect(result).toBe(true);
     });
 
-    it("matches whole word control match", () => {
-      const result = isCommandMatch("press(SELECT)", "SELECT");
+    it("matches in substeps", () => {
+      const result = isActionMatch([{
+        substeps: [{ action: "PRESS", control: "SELECT" }]
+      }], "press");
       expect(result).toBe(true);
     });
 
     it("doesn't match partials", () => {
-      const result = isCommandMatch("press(SELECT)", "SEL");
+      const result = isActionMatch([{ action: "PRESS", control: "SELECT" }], "PRE");
       expect(result).toBe(false);
     });
 
     it("is case insensitive", () => {
-      const result = isCommandMatch("press(SELECT)", "select");
+      const result = isActionMatch([{ action: "PRESS", control: "SELECT" }], "press");
       expect(result).toBe(true);
     });
-  });
+  })
+
+  describe("isControlMatch", () => {
+    it("matches whole word control match", () => {
+      const result = isControlMatch([{ action: "PRESS", control: "SELECT" }], "SELECT");
+      expect(result).toBe(true);
+    });
+
+    it("matches in substeps", () => {
+      const result = isControlMatch([{
+        substeps: [{ action: "PRESS", control: "SELECT" }]
+      }], "select");
+      expect(result).toBe(true);
+    });
+
+    it("doesn't match partials", () => {
+      const result = isControlMatch([{ action: "PRESS", control: "SELECT" }], "SEL");
+      expect(result).toBe(false);
+    });
+
+    it("is case insensitive", () => {
+      const result = isControlMatch([{ action: "PRESS", control: "SELECT" }], "select");
+      expect(result).toBe(true);
+    });
+  })
 
   describe("isMatch", () => {
     it("runs", () => {
@@ -79,7 +109,7 @@ describe("filterList", () => {
     });
 
     it("returns true when action does match", () => {
-      const result = isMatch(mockEntry({ command: "press(SELECT)" }), [
+      const result = isMatch(mockEntry(), [
         "action:press",
       ]);
       expect(result).toBe(true);
@@ -91,7 +121,7 @@ describe("filterList", () => {
     });
 
     it("returns true when control does match", () => {
-      const result = isMatch(mockEntry({ command: "press(SELECT)" }), [
+      const result = isMatch(mockEntry(), [
         "control:SELECT",
       ]);
       expect(result).toBe(true);
@@ -103,7 +133,7 @@ describe("filterList", () => {
     });
 
     it("returns true when views does match", () => {
-      const result = isMatch(mockEntry({ views: ["arranger"] }), [
+      const result = isMatch(mockEntry({ views: [View.ARRANGER] }), [
         "view:arranger",
       ]);
       expect(result).toBe(true);
@@ -130,7 +160,7 @@ describe("filterList", () => {
     });
 
     it("doesn't partially match command terms", () => {
-      const result = isMatch(mockEntry({ command: "control:SELECT" }), [
+      const result = isMatch(mockEntry(), [
         "control:SEL",
       ]);
       expect(result).toBe(false);

@@ -1,3 +1,5 @@
+import { Control, Action, View } from "../data/syntax-constants.js";
+
 export function splitSearch(search) {
   // https://stackoverflow.com/a/16261693
   let splitWithQuotesRegex = /(?:[^\s"]+|"[^"]*")+/g;
@@ -8,14 +10,50 @@ export function splitSearch(search) {
   return output.map((sub) => sub.replaceAll(`"`, ""));
 }
 
-export function isCommandMatch(command, str) {
-  const splitCommand = command.split(/[\s()]+/);
-  for (let partial of splitCommand) {
-    if (str.toLowerCase() === partial.toLowerCase()) {
-      return true;
+export function isActionMatch(steps, str) {
+  const upper = str.toUpperCase()
+
+  // not a known action
+  if (!Action[upper]) return false
+
+  let match = false
+
+  for (let step of steps) {
+    if (step.substeps) {
+      match = isActionMatch(step.substeps, str)
+    } else {
+      match = step.action === upper
+    }
+
+    if (match) {
+      return true
     }
   }
-  return false;
+
+  return false
+}
+
+export function isControlMatch(steps, str) {
+  const upper = str.toUpperCase()
+
+  // not a known action
+  if (!Control[upper]) return false
+
+  let match = false
+
+  for (let step of steps) {
+    if (step.substeps) {
+      match = isControlMatch(step.substeps, str)
+    } else {
+      match = step.control === upper
+    }
+
+    if (match) {
+      return true
+    }
+  }
+
+  return false
 }
 
 export function isMatch(entry, searchOptions) {
@@ -27,18 +65,20 @@ export function isMatch(entry, searchOptions) {
     if (commandMatch) {
       const [_, cmd, param] = commandMatch;
 
-      // ex: action:press or control:SELECT
-      if (
-        (cmd.toLowerCase() === "action" || cmd.toLowerCase() === "control") &&
-        !isCommandMatch(entry.command, param)
-      ) {
+      // ex: action:PRESS
+      if (cmd.toLowerCase() === "action" && !isActionMatch(entry.steps, param)) {
+        return false;
+      }
+
+      // ex: control:SELECT
+      if (cmd.toLowerCase() === "control" && !isControlMatch(entry.steps, param)) {
         return false;
       }
 
       // ex: view:song
       if (
         cmd.toLowerCase() === "view" &&
-        !entry.views?.includes(param.toLowerCase())
+        !entry.views?.includes(param.toUpperCase())
       ) {
         return false;
       }
@@ -46,7 +86,7 @@ export function isMatch(entry, searchOptions) {
     // handle string searches
     else {
       if (
-        !entry.title.toLowerCase().includes(opt.toLowerCase()) &&
+        !entry.name.toLowerCase().includes(opt.toLowerCase()) &&
         !entry.description?.toLowerCase().includes(opt.toLowerCase())
       ) {
         return false;
