@@ -7,10 +7,10 @@ function Group({ group, subgroup }) {
       <div className="list__group">{group}</div>
       {subgroup.map((e) => (
         <ListItem
-          key={e.title}
-          title={e.title}
+          key={e.name}
+          name={e.name}
           description={e.description}
-          command={e.command}
+          steps={e.steps}
           views={e.views}
           link={e.link}
         />

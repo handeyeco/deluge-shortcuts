@@ -6,6 +6,10 @@ function convertViews(orig) {
   return orig.map(e => `$View.${e.toUpperCase()}$`)
 }
 
+function convertGrid(orig) {
+
+}
+
 function convertCommand(orig) {
   const output = []
   const split = orig
@@ -17,10 +21,33 @@ function convertCommand(orig) {
   }
 
   for (let i = 0; i < split.length; i += 2) {
-    output.push({
-      action: `$Action.${split[i].toUpperCase()}$`,
-      control: `$Control.${split[i+1].toUpperCase()}$`,
-    })
+    const action = split[i].toUpperCase()
+    const control = split[i+1].toUpperCase()
+
+    if (!Action[action] || !Control[control]) {
+      console.log({action, control})
+    }
+
+    let convertedControl
+    const controlMatch = control.match(/^(\d+),(\d+)$/)
+    if (Control[control]) {
+      // Standard controls
+      convertedControl = `$Control.${control}$`
+    } else if (controlMatch) {
+      convertedControl = {
+        x: parseInt(controlMatch[1]),
+        y: parseInt(controlMatch[2]),
+      }
+    } else {
+      convertedControl = control
+    }
+
+    const formatted = {
+      action: `$Action.${action}$`,
+      control: convertedControl
+    }
+
+    output.push(formatted)
   }
 
   return output
@@ -38,13 +65,78 @@ function main() {
     output[group] = groupOutput
   })
 
-  console.log(output)
   var json = JSON.stringify(output, null, 2);
   json = json.replaceAll(/"*\$"*/gi, "")
-  fs.writeFileSync('./shortcuts.js', `import { Control, Action, View } from "./syntax-constants.js";\n\nconst shortcuts = ` + json, 'utf8');
+  fs.writeFileSync('./shortcuts.js', `import { Control, Action, View } from "./syntax-constants.js";\n\nconst shortcuts = ` + json + "\n\nexport default shortcuts", 'utf8');
 
 }
 
+var Control = {
+  X: "X",
+  Y: "Y",
+
+  PARAMETER: "PARAMETER",
+  LOWER_PARAM: "LOWER_PARAM",
+  UPPER_PARAM: "UPPER_PARAM",
+
+  ENTIRE: "ENTIRE",
+  SONG: "SONG",
+  CLIP: "CLIP",
+
+  SELECT: "SELECT",
+
+  SYNTH: "SYNTH",
+  KIT: "KIT",
+  MIDI: "MIDI",
+  CV: "CV",
+  KEY: "KEY",
+  SCALE: "SCALE",
+  CROSS: "CROSS",
+
+  BACK: "BACK",
+  LOAD: "LOAD",
+  SAVE: "SAVE",
+  LEARN: "LEARN",
+
+  TAP: "TAP",
+  SYNC: "SYNC",
+  TEMPO: "TEMPO",
+
+  PLAY: "PLAY",
+  RECORD: "RECORD",
+  SHIFT: "SHIFT",
+
+  GRID: "GRID",
+  GRID_UNLIT: "GRID_UNLIT",
+  GRID_LIT: "GRID_LIT",
+  WAVE_START: "WAVE_START",
+  WAVE_END: "WAVE_END",
+  WAVE_LOOP_START: "WAVE_LOOP_START",
+  WAVE_LOOP_END: "WAVE_LOOP_END",
+  LAUNCH: "LAUNCH",
+  AUDITION: "AUDITION",
+  EXTERNAL: "EXTERNAL",
+};
+
+var Action = {
+  HOLD: "HOLD",
+  RELEASE: "RELEASE",
+  PRESS: "PRESS",
+  TURN: "TURN",
+  MENU: "MENU",
+};
+
+var View = {
+  GLOBAL: "GLOBAL",
+  SONG: "SONG",
+  ARRANGER: "ARRANGER",
+  SYNTH: "SYNTH",
+  KIT: "KIT",
+  MIDI: "MIDI",
+  CV: "CV",
+  AUDIO: "AUDIO",
+  WAVEFORM: "WAVEFORM",
+};
 
 var v4_1_0 = {
   Global: [

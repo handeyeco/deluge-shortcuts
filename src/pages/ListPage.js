@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useLocation } from "react-router-dom";
 
-import v4_1_0 from "../data/shortcuts-v4_1_0";
+import shortcuts from "../data/shortcuts";
 import SYNTAX from "../data/syntax";
 import filterList from "../util/filterList";
 import List from "../components/List";
@@ -17,7 +17,7 @@ function ListPage() {
 
   const isShortcutPage = location.pathname.includes("shortcuts");
 
-  const filteredList = filterList(search, isShortcutPage ? v4_1_0 : SYNTAX);
+  const filteredList = filterList(search, isShortcutPage ? shortcuts : SYNTAX);
 
   function handleSubmit(e) {
     e.preventDefault();

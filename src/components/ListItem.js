@@ -3,24 +3,24 @@ import ShortcutImage from "./ShortcutImage";
 import "./ListItem.css";
 
 function ListItem({
-  title = "",
+  name = "",
   description = "",
-  command = "",
+  steps = "",
   views = [],
   link,
 }) {
   return (
     <div className="list-item">
-      <div className="list-item__title">{title}</div>
+      <div className="list-item__title">{name}</div>
 
       {description && (
         <div className="list-item__description">{description}</div>
       )}
 
-      {command && (
+      {steps && (
         <>
-          <ShortcutImage shortcut={command} />
-          <div className="list-item__command">{command}</div>
+          <ShortcutImage steps={steps} />
+          <div className="list-item__command">{JSON.stringify(steps, null, 2)}</div>
         </>
       )}
 
@@ -30,7 +30,7 @@ function ListItem({
 
       {link && (
         <div className="list-item__link">
-          <Link to={link}>Filter shortcuts by: {title}</Link>
+          <Link to={link}>Filter shortcuts by: {name}</Link>
         </div>
       )}
     </div>

@@ -21,12 +21,16 @@ const shortcuts = {
       ],
       "steps": [
         {
-          "action": Action.HOLD,
-          "control": Control.X
-        },
-        {
-          "action": Action.TURN,
-          "control": Control.X
+          substeps: [
+            {
+              "action": Action.HOLD,
+              "control": Control.X
+            },
+            {
+              "action": Action.TURN,
+              "control": Control.X
+            }
+          ]
         }
       ]
     },
@@ -688,7 +692,10 @@ const shortcuts = {
         },
         {
           "action": Action.PRESS,
-          "control": Control.1,5
+          "control": {
+            "x": 1,
+            "y": 5
+          }
         }
       ]
     },
@@ -1245,7 +1252,7 @@ const shortcuts = {
         },
         {
           "action": Action.MENU,
-          "control": Control.ALL
+          "control": "ALL"
         },
         {
           "action": Action.PRESS,
@@ -1277,7 +1284,7 @@ const shortcuts = {
         },
         {
           "action": Action.MENU,
-          "control": Control.SLICE
+          "control": "SLICE"
         },
         {
           "action": Action.PRESS,
@@ -1285,7 +1292,7 @@ const shortcuts = {
         },
         {
           "action": Action.MENU,
-          "control": Control.SLICES
+          "control": "SLICES"
         },
         {
           "action": Action.PRESS,
@@ -1305,7 +1312,10 @@ const shortcuts = {
         },
         {
           "action": Action.PRESS,
-          "control": Control.3,12
+          "control": {
+            "x": 3,
+            "y": 12
+          }
         }
       ]
     }
@@ -1451,7 +1461,10 @@ const shortcuts = {
         },
         {
           "action": Action.PRESS,
-          "control": Control.1,1
+          "control": {
+            "x": 1,
+            "y": 1
+          }
         }
       ]
     },
@@ -1642,7 +1655,10 @@ const shortcuts = {
         },
         {
           "action": Action.PRESS,
-          "control": Control.7,8
+          "control": {
+            "x": 7,
+            "y": 8
+          }
         },
         {
           "action": Action.TURN,
@@ -1650,7 +1666,7 @@ const shortcuts = {
         },
         {
           "action": Action.MENU,
-          "control": Control.CHOKE
+          "control": "CHOKE"
         },
         {
           "action": Action.PRESS,
@@ -1727,7 +1743,7 @@ const shortcuts = {
         },
         {
           "action": Action.MENU,
-          "control": Control.CLONE
+          "control": "CLONE"
         },
         {
           "action": Action.PRESS,
@@ -1908,7 +1924,7 @@ const shortcuts = {
         },
         {
           "action": Action.MENU,
-          "control": Control.BASIC
+          "control": "BASIC"
         },
         {
           "action": Action.PRESS,
@@ -1944,7 +1960,7 @@ const shortcuts = {
         },
         {
           "action": Action.MENU,
-          "control": Control.MULTI
+          "control": "MULTI"
         },
         {
           "action": Action.PRESS,
@@ -1980,7 +1996,7 @@ const shortcuts = {
         },
         {
           "action": Action.MENU,
-          "control": Control.SINGLE
+          "control": "SINGLE"
         },
         {
           "action": Action.PRESS,
@@ -2000,7 +2016,10 @@ const shortcuts = {
         },
         {
           "action": Action.PRESS,
-          "control": Control.6,3
+          "control": {
+            "x": 6,
+            "y": 3
+          }
         },
         {
           "action": Action.TURN,
@@ -2008,7 +2027,7 @@ const shortcuts = {
         },
         {
           "action": Action.MENU,
-          "control": Control.IN
+          "control": "IN"
         },
         {
           "action": Action.PRESS,
@@ -2069,7 +2088,10 @@ const shortcuts = {
         },
         {
           "action": Action.PRESS,
-          "control": Control.1,1
+          "control": {
+            "x": 1,
+            "y": 1
+          }
         }
       ]
     },
@@ -2651,7 +2673,10 @@ const shortcuts = {
         },
         {
           "action": Action.PRESS,
-          "control": Control.3,12
+          "control": {
+            "x": 3,
+            "y": 12
+          }
         }
       ]
     }
@@ -3427,13 +3452,15 @@ const shortcuts = {
         },
         {
           "action": Action.MENU,
-          "control": Control.RECORDING
+          "control": "RECORDING"
         },
         {
           "action": Action.MENU,
-          "control": Control.COUNT_IN
+          "control": "COUNT_IN"
         }
       ]
     }
   ]
 }
+
+export default shortcuts

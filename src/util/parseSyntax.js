@@ -1,4 +1,4 @@
-export function parseSyntax(steps) {
+export default function parseSyntax(steps) {
   if (!steps) {
     throw new Error("parseSyntax: no steps provided")
   } else if (!Array.isArray(steps)) {

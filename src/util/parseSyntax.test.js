@@ -1,4 +1,4 @@
-import { parseSyntax } from "./parseSyntax";
+import parseSyntax from "./parseSyntax";
 
 const changeTempo = {
   name: "Change tempo",

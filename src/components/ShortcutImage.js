@@ -1,4 +1,6 @@
 import "./ShortcutImage.css";
+import { Control, Action } from "../data/syntax-constants.js";
+import parseSyntax from "../util/parseSyntax.js"
 
 // Full dimension
 const D = 100;
@@ -15,7 +17,7 @@ const L_GREY = "#CCC";
 const D_GREY = "#666";
 
 const ACTION_SVG = {
-  press: () => (
+  [Action.PRESS]: () => (
     <circle
       cx={D / 2}
       cy={D / 2}
@@ -25,7 +27,7 @@ const ACTION_SVG = {
       fill="none"
     />
   ),
-  hold: () => (
+  [Action.HOLD]: () => (
     <rect
       x="7"
       y="7"
@@ -36,7 +38,7 @@ const ACTION_SVG = {
       fill="none"
     />
   ),
-  release: () => (
+  [Action.RELEASE]: () => (
     <rect
       x="7"
       y="7"
@@ -48,7 +50,7 @@ const ACTION_SVG = {
       fill="none"
     />
   ),
-  turn: () => (
+  [Action.TURN]: () => (
     <circle
       cx={D / 2}
       cy={D / 2}
@@ -59,7 +61,7 @@ const ACTION_SVG = {
       strokeDasharray="40 10"
     />
   ),
-  menu: () => <CenteredText text={"SCR"} />,
+  [Action.MENU]: () => <CenteredText text={"SCR"} />,
 };
 
 function CenteredText({ text, color = BLACK }) {
@@ -123,71 +125,72 @@ function TextGrid({ text, fill = D_GREY, stroke = L_GREY, color = BLACK }) {
 }
 
 const ELEMENT_SVG = {
-  X: () => <TextCircle text="X" fill={BLACK} stroke={BLACK} color={WHITE} />,
-  Y: () => <TextCircle text="Y" fill={BLACK} stroke={BLACK} color={WHITE} />,
-  PARAMETER: () => <TextCircle text="PA" fill="#FFD700" stroke="#FFD700" />,
-  LOWER_PARAM: () => <TextCircle text="LP" fill="#FFD700" stroke="#FFD700" />,
-  UPPER_PARAM: () => <TextCircle text="UP" fill="#FFD700" stroke="#FFD700" />,
-  ENTIRE: () => <TextCircle text="AE" />,
-  SONG: () => <TextCircle text="SN" />,
-  CLIP: () => <TextCircle text="CP" />,
-  SELECT: () => (
+  [Control.X]: () => <TextCircle text="X" fill={BLACK} stroke={BLACK} color={WHITE} />,
+  [Control.Y]: () => <TextCircle text="Y" fill={BLACK} stroke={BLACK} color={WHITE} />,
+  [Control.PARAMETER]: () => <TextCircle text="PA" fill="#FFD700" stroke="#FFD700" />,
+  [Control.LOWER_PARAM]: () => <TextCircle text="LP" fill="#FFD700" stroke="#FFD700" />,
+  [Control.UPPER_PARAM]: () => <TextCircle text="UP" fill="#FFD700" stroke="#FFD700" />,
+  [Control.ENTIRE]: () => <TextCircle text="AE" />,
+  [Control.SONG]: () => <TextCircle text="SN" />,
+  [Control.CLIP]: () => <TextCircle text="CP" />,
+  [Control.SELECT]: () => (
     <TextCircle text="S" fill={BLACK} stroke={BLACK} color={WHITE} />
   ),
-  SYNTH: () => <TextCircle text="SY" />,
-  KIT: () => <TextCircle text="KT" />,
-  MIDI: () => <TextCircle text="MD" />,
-  CV: () => <TextCircle text="CV" />,
-  KEY: () => <TextCircle text="K" />,
-  SCALE: () => <TextCircle text="SC" />,
-  CROSS: () => <TextCircle text="CR" />,
-  BACK: () => <TextCircle text="BK" />,
-  LOAD: () => <TextCircle text="LD" />,
-  SAVE: () => <TextCircle text="SV" />,
-  LEARN: () => <TextCircle text="LN" />,
-  TEMPO: () => (
+  [Control.SYNTH]: () => <TextCircle text="SY" />,
+  [Control.KIT]: () => <TextCircle text="KT" />,
+  [Control.MIDI]: () => <TextCircle text="MD" />,
+  [Control.CV]: () => <TextCircle text="CV" />,
+  [Control.KEY]: () => <TextCircle text="K" />,
+  [Control.SCALE]: () => <TextCircle text="SC" />,
+  [Control.CROSS]: () => <TextCircle text="CR" />,
+  [Control.BACK]: () => <TextCircle text="BK" />,
+  [Control.LOAD]: () => <TextCircle text="LD" />,
+  [Control.SAVE]: () => <TextCircle text="SV" />,
+  [Control.LEARN]: () => <TextCircle text="LN" />,
+  [Control.TEMPO]: () => (
     <TextCircle text="T" fill={BLACK} stroke={BLACK} color={WHITE} />
   ),
-  TAP: () => <TextCircle text="TP" />,
-  SYNC: () => <TextCircle text="SY" />,
-  PLAY: () => <TextCircle text="P" fill="#61c049" stroke="#61c049" />,
-  RECORD: () => (
+  [Control.TAP]: () => <TextCircle text="TP" />,
+  [Control.SYNC]: () => <TextCircle text="SY" />,
+  [Control.PLAY]: () => <TextCircle text="P" fill="#61c049" stroke="#61c049" />,
+  [Control.RECORD]: () => (
     <TextCircle text="R" fill="#ff2e17" stroke="#ff2e17" color={WHITE} />
   ),
-  SHIFT: () => <TextCircle text="S" />,
-  GRID: () => <TextGrid text="G" fill={WHITE} stroke={BLACK} />,
-  GRID_LIT: () => <TextGrid text="G" fill={L_GREY} stroke={D_GREY} />,
-  GRID_UNLIT: () => (
+  [Control.SHIFT]: () => <TextCircle text="S" />,
+  [Control.GRID]: () => <TextGrid text="G" fill={WHITE} stroke={BLACK} />,
+  [Control.GRID_LIT]: () => <TextGrid text="G" fill={L_GREY} stroke={D_GREY} />,
+  [Control.GRID_UNLIT]: () => (
     <TextGrid text="G" fill={D_GREY} stroke={L_GREY} color={WHITE} />
   ),
-  LAUNCH: () => <TextGrid text="L" fill={L_GREY} stroke={D_GREY} />,
-  AUDITION: () => <TextGrid text="A" fill={L_GREY} stroke={D_GREY} />,
-  WAVE_START: () => <TextGrid text="S" fill="#61c049" stroke="#61c049" />,
-  WAVE_END: () => (
+  [Control.LAUNCH]: () => <TextGrid text="L" fill={L_GREY} stroke={D_GREY} />,
+  [Control.AUDITION]: () => <TextGrid text="A" fill={L_GREY} stroke={D_GREY} />,
+  [Control.WAVE_START]: () => <TextGrid text="S" fill="#61c049" stroke="#61c049" />,
+  [Control.WAVE_END]: () => (
     <TextGrid text="E" fill="#ff2e17" stroke="#ff2e17" color={WHITE} />
   ),
-  WAVE_LOOP_START: () => <TextGrid text="LS" fill="#48cff0" stroke="#48cff0" />,
-  WAVE_LOOP_END: () => (
+  [Control.WAVE_LOOP_START]: () => <TextGrid text="LS" fill="#48cff0" stroke="#48cff0" />,
+  [Control.WAVE_LOOP_END]: () => (
     <TextGrid text="LE" fill="#664aa6" stroke="#664aa6" color={WHITE} />
   ),
-  MENU: () => <CenteredText text="SCR" />,
-  EXTERNAL: () => <CenteredText text="EXT" />,
+  [Control.MENU]: () => <CenteredText text="SCR" />,
+  [Control.EXTERNAL]: () => <CenteredText text="EXT" />,
 };
 
-function Step({ action, element }) {
-  const gridRegex = /^\d+,\d+$/;
+function Step({ action, control }) {
   let ActionSVG = ACTION_SVG[action];
-  let ElementSVG = ELEMENT_SVG[element];
+  let ElementSVG = ELEMENT_SVG[control];
 
-  if (action === "menu") {
+  if (action === "MENU") {
     return <ActionSVG />;
   }
 
-  if (gridRegex.test(element)) {
+  // grid element
+  if (control?.x && control?.y) {
+    const gridText = `${control.x},${control.y}`
     return (
       <>
         <ActionSVG />
-        <CenteredText text={element} />
+        <CenteredText text={gridText} />
       </>
     );
   }
@@ -200,6 +203,26 @@ function Step({ action, element }) {
   );
 }
 
+function Plus() {
+  const lineSize = D / 3
+  return (
+    <>
+      <line stroke={BLACK}
+        strokeWidth="4"
+        x1={D / 2}
+        y1={lineSize}
+        x2={D / 2}
+        y2={lineSize * 2} />
+      <line stroke={BLACK}
+        strokeWidth="4"
+        x1={lineSize}
+        y1={D / 2}
+        x2={lineSize * 2}
+        y2={D / 2} />
+    </>
+  )
+}
+
 function Syntax({ command }) {
   let ActionSVG = ACTION_SVG[command];
   let ElementSVG = ELEMENT_SVG[command];
@@ -209,29 +232,34 @@ function Syntax({ command }) {
   return <CenteredText text={command} />;
 }
 
-function ShortcutImage({ shortcut }) {
-  const steps = shortcut.match(/\w+\([a-zA-Z0-9_ ,]+\)/g);
-  const syntax = shortcut.match(/^[a-zA-Z0-9_ ,]+$/);
+function ShortcutImage({ steps }) {
+  // simplify the structure of the steps
+  // for drawing
+  const parsed = parseSyntax(steps)
+
 
   return (
     <div className="shortcut-image__container">
       <svg viewBox="0 0 1000 100">
-        {steps &&
-          steps.map((step, index) => {
-            const [_, action, element] = step.match(
-              /(\w+)\(([a-zA-Z0-9_ ,]+)\)/
-            );
+        {parsed &&
+          parsed.map((step, index) => {
             return (
               <g
                 key={step + index}
                 transform={`translate(${D * index + S * index})`}
               >
-                <Step action={action} element={element} />
+                {
+                  step === "AND" ? (
+                    <Plus />
+                  ) : (
+                    <Step action={step.action} control={step.control} />
+                  )
+                }
               </g>
             );
           })}
 
-        {syntax && <Syntax command={shortcut} />}
+        {/* {syntax && <Syntax command={shortcut} />} */}
       </svg>
     </div>
   );
