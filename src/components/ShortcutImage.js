@@ -1,6 +1,5 @@
 import "./ShortcutImage.css";
 import { Control, Action } from "../data/syntax-constants.js";
-import parseSyntax from "../util/parseSyntax.js";
 
 // Full dimension
 const D = 100;
@@ -251,17 +250,14 @@ function Syntax({ command }) {
   return <CenteredText text={command} />;
 }
 
-function ShortcutImage({ steps }) {
-  // simplify the structure of the steps
-  // for drawing
-  const parsed = parseSyntax(steps);
+function ShortcutImage({ parsedSteps }) {
   let nextStart = 0
 
   return (
     <div className="shortcut-image__container">
       <svg viewBox="0 0 1000 100">
-        {parsed &&
-          parsed.map((step, index) => {
+        {parsedSteps &&
+          parsedSteps.map((step, index) => {
             const isAnd = step === "AND"
             const thisStart = nextStart
             nextStart += (isAnd ? D/2 : D) + S
@@ -278,8 +274,6 @@ function ShortcutImage({ steps }) {
               </g>
             );
           })}
-
-        {/* {syntax && <Syntax command={shortcut} />} */}
       </svg>
     </div>
   );

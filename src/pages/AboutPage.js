@@ -62,10 +62,10 @@ function AboutPage() {
         .
       </p>
 
-      <h2>Extra</h2>
+      {/* <h2>Extra</h2>
       <a href={crDataString} download="cross-reference.json">
         Download cross-reference as JSON
-      </a>
+      </a> */}
     </div>
   );
 }

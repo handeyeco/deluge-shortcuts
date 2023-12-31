@@ -1,6 +1,18 @@
 import { Link } from "react-router-dom";
 import ShortcutImage from "./ShortcutImage";
+import parseSyntax from "../util/parseSyntax.js";
 import "./ListItem.css";
+
+function Steps({ steps }) {
+  const parsedSteps = parseSyntax(steps);
+
+  return (
+    <>
+      <ShortcutImage parsedSteps={parsedSteps} />
+      <div className="list-item__command">{JSON.stringify(steps, null, 2)}</div>
+    </>
+  );
+}
 
 function ListItem({
   name = "",
@@ -9,6 +21,8 @@ function ListItem({
   views = [],
   link,
 }) {
+  // simplify the structure of the steps
+  // for drawing
   return (
     <div className="list-item">
       <div className="list-item__title">{name}</div>
@@ -17,12 +31,7 @@ function ListItem({
         <div className="list-item__description">{description}</div>
       )}
 
-      {steps && (
-        <>
-          <ShortcutImage steps={steps} />
-          <div className="list-item__command">{JSON.stringify(steps, null, 2)}</div>
-        </>
-      )}
+      {steps && <Steps steps={steps} />}
 
       {!!(views && views.length) && (
         <div className="list-item__views">Views: {views.join(", ")}</div>
