@@ -10,9 +10,14 @@ function process(list) {
     const processedSubGroup = [];
     Object.entries(subgroup).forEach(([command, description]) => {
       processedSubGroup.push({
-        title: command,
+        name: command,
         description: description,
-        command: group === "Views" ? null : command,
+        steps: group === "view" ? null : [
+          {
+            action: Action[command],
+            control: Control[command]
+          }
+        ],
         link: createLink(group, command),
       });
     });

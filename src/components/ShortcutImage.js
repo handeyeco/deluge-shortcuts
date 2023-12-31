@@ -1,6 +1,6 @@
 import "./ShortcutImage.css";
 import { Control, Action } from "../data/syntax-constants.js";
-import parseSyntax from "../util/parseSyntax.js"
+import parseSyntax from "../util/parseSyntax.js";
 
 // Full dimension
 const D = 100;
@@ -125,11 +125,21 @@ function TextGrid({ text, fill = D_GREY, stroke = L_GREY, color = BLACK }) {
 }
 
 const ELEMENT_SVG = {
-  [Control.X]: () => <TextCircle text="X" fill={BLACK} stroke={BLACK} color={WHITE} />,
-  [Control.Y]: () => <TextCircle text="Y" fill={BLACK} stroke={BLACK} color={WHITE} />,
-  [Control.PARAMETER]: () => <TextCircle text="PA" fill="#FFD700" stroke="#FFD700" />,
-  [Control.LOWER_PARAM]: () => <TextCircle text="LP" fill="#FFD700" stroke="#FFD700" />,
-  [Control.UPPER_PARAM]: () => <TextCircle text="UP" fill="#FFD700" stroke="#FFD700" />,
+  [Control.X]: () => (
+    <TextCircle text="X" fill={BLACK} stroke={BLACK} color={WHITE} />
+  ),
+  [Control.Y]: () => (
+    <TextCircle text="Y" fill={BLACK} stroke={BLACK} color={WHITE} />
+  ),
+  [Control.PARAMETER]: () => (
+    <TextCircle text="PA" fill="#FFD700" stroke="#FFD700" />
+  ),
+  [Control.LOWER_PARAM]: () => (
+    <TextCircle text="LP" fill="#FFD700" stroke="#FFD700" />
+  ),
+  [Control.UPPER_PARAM]: () => (
+    <TextCircle text="UP" fill="#FFD700" stroke="#FFD700" />
+  ),
   [Control.ENTIRE]: () => <TextCircle text="AE" />,
   [Control.SONG]: () => <TextCircle text="SN" />,
   [Control.CLIP]: () => <TextCircle text="CP" />,
@@ -164,11 +174,15 @@ const ELEMENT_SVG = {
   ),
   [Control.LAUNCH]: () => <TextGrid text="L" fill={L_GREY} stroke={D_GREY} />,
   [Control.AUDITION]: () => <TextGrid text="A" fill={L_GREY} stroke={D_GREY} />,
-  [Control.WAVE_START]: () => <TextGrid text="S" fill="#61c049" stroke="#61c049" />,
+  [Control.WAVE_START]: () => (
+    <TextGrid text="S" fill="#61c049" stroke="#61c049" />
+  ),
   [Control.WAVE_END]: () => (
     <TextGrid text="E" fill="#ff2e17" stroke="#ff2e17" color={WHITE} />
   ),
-  [Control.WAVE_LOOP_START]: () => <TextGrid text="LS" fill="#48cff0" stroke="#48cff0" />,
+  [Control.WAVE_LOOP_START]: () => (
+    <TextGrid text="LS" fill="#48cff0" stroke="#48cff0" />
+  ),
   [Control.WAVE_LOOP_END]: () => (
     <TextGrid text="LE" fill="#664aa6" stroke="#664aa6" color={WHITE} />
   ),
@@ -186,10 +200,10 @@ function Step({ action, control }) {
 
   // grid element
   if (control?.x && control?.y) {
-    const gridText = `${control.x},${control.y}`
+    const gridText = `${control.x},${control.y}`;
     return (
       <>
-        <ActionSVG />
+        {action && <ActionSVG />}
         <CenteredText text={gridText} />
       </>
     );
@@ -197,30 +211,35 @@ function Step({ action, control }) {
 
   return (
     <>
-      <ActionSVG />
-      <ElementSVG />
+      {action && <ActionSVG />}
+      {control && <ElementSVG />}
     </>
   );
 }
 
 function Plus() {
-  const lineSize = D / 3
+  const lineSize = D/4;
+  const yOffset = (D - lineSize) / 2
   return (
-    <>
-      <line stroke={BLACK}
+    <g transform={`translate(${D/8})`}>
+      <line
+        stroke={BLACK}
         strokeWidth="4"
-        x1={D / 2}
-        y1={lineSize}
-        x2={D / 2}
-        y2={lineSize * 2} />
-      <line stroke={BLACK}
+        x1={lineSize/2}
+        y1={yOffset}
+        x2={lineSize/2}
+        y2={yOffset + lineSize}
+      />
+      <line
+        stroke={BLACK}
         strokeWidth="4"
-        x1={lineSize}
+        x1={0}
         y1={D / 2}
-        x2={lineSize * 2}
-        y2={D / 2} />
-    </>
-  )
+        x2={lineSize}
+        y2={D / 2}
+      />
+    </g>
+  );
 }
 
 function Syntax({ command }) {
@@ -235,26 +254,27 @@ function Syntax({ command }) {
 function ShortcutImage({ steps }) {
   // simplify the structure of the steps
   // for drawing
-  const parsed = parseSyntax(steps)
-
+  const parsed = parseSyntax(steps);
+  let nextStart = 0
 
   return (
     <div className="shortcut-image__container">
       <svg viewBox="0 0 1000 100">
         {parsed &&
           parsed.map((step, index) => {
+            const isAnd = step === "AND"
+            const thisStart = nextStart
+            nextStart += (isAnd ? D/2 : D) + S
             return (
               <g
                 key={step + index}
-                transform={`translate(${D * index + S * index})`}
+                transform={`translate(${thisStart})`}
               >
-                {
-                  step === "AND" ? (
-                    <Plus />
-                  ) : (
-                    <Step action={step.action} control={step.control} />
-                  )
-                }
+                {isAnd ? (
+                  <Plus />
+                ) : (
+                  <Step action={step.action} control={step.control} />
+                )}
               </g>
             );
           })}
