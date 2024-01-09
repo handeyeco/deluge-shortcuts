@@ -9,7 +9,7 @@ function Steps({ steps }) {
   return (
     <>
       <ShortcutImage parsedSteps={parsedSteps} />
-      <div className="list-item__command">{JSON.stringify(steps, null, 2)}</div>
+      {/* <div className="list-item__command">{JSON.stringify(steps, null, 2)}</div> */}
     </>
   );
 }
