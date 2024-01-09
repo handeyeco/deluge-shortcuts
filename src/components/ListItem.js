@@ -1,15 +1,19 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import ShortcutImage from "./ShortcutImage";
 import parseSyntax from "../util/parseSyntax.js";
+import convertSyntaxToText from "../util/convertSyntaxToText.js";
 import "./ListItem.css";
 
 function Steps({ steps }) {
+  let location = useLocation();
   const parsedSteps = parseSyntax(steps);
 
   return (
     <>
       <ShortcutImage parsedSteps={parsedSteps} />
-      {/* <div className="list-item__command">{JSON.stringify(steps, null, 2)}</div> */}
+      {location.pathname === "/shortcuts" && (
+        <div className="list-item__command">{convertSyntaxToText(steps)}</div>
+      )}
     </>
   );
 }

@@ -9,16 +9,13 @@
   padding-bottom: 2rem;
 }
 
-.list-item__description {
+.list-item__description,
+.list-item__command {
   font-size: 0.8em;
   padding-bottom: 2rem;
 }
 
 .list-item__command {
-  background: #eee;
-  font-family: monospace;
-  display: inline-block;
-  padding: 0.25rem;
   margin-bottom: 2rem;
 }
 

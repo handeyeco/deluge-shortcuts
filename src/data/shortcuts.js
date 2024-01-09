@@ -177,12 +177,16 @@ const shortcuts = {
       views: [View.GLOBAL],
       steps: [
         {
-          action: Action.HOLD,
-          control: Control.TEMPO,
-        },
-        {
-          action: Action.TURN,
-          control: Control.TEMPO,
+          substeps: [
+            {
+              action: Action.HOLD,
+              control: Control.TEMPO,
+            },
+            {
+              action: Action.TURN,
+              control: Control.TEMPO,
+            },
+          ],
         },
       ],
     },

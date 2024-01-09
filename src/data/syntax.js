@@ -12,12 +12,15 @@ function process(list) {
       processedSubGroup.push({
         name: command,
         description: description,
-        steps: group === "view" ? null : [
-          {
-            action: Action[command],
-            control: Control[command]
-          }
-        ],
+        steps:
+          group === "view"
+            ? null
+            : [
+                {
+                  action: Action[command],
+                  control: Control[command],
+                },
+              ],
         link: createLink(group, command),
       });
     });
@@ -26,7 +29,7 @@ function process(list) {
   return output;
 }
 
-const SYNTAX = {
+export const RAW_SYNTAX = {
   control: {
     "3,12": "Grid button coordinates (X,Y) where upper-left grid button is 1,1",
     [Control.X]: "X (Left/Right) encoder",
@@ -96,4 +99,4 @@ const SYNTAX = {
   },
 };
 
-export default process(SYNTAX);
+export default process(RAW_SYNTAX);
